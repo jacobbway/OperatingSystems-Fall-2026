@@ -1,6 +1,8 @@
 #ifndef CustomFunctions
 #define CustomFunctions
-#endif
 
 std::vector<int> CreateFilledVector(int minNumber, int maxNumber, int numElementsInVector);
-std::vector<int> QuickSort
+_PSTL_PRAGMA_VECTOR_UNALIGNED QuickSort(std::vector<int> &inputVector, int low = 0, int high = -1);
+int QuickSortHelper(std::vector<int> &inputVector, int low, int high);
+
+#endif
