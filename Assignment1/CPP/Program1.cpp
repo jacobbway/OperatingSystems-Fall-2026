@@ -7,15 +7,10 @@ int main()
 {
     int minNumber = 1;
     int maxNumber = 10000;
-    int numElementsInVector = 100;//000000; // 100 million
+    int numElementsInVector = 10000000; // 10 million
 
     std::vector<int> filledVector1 = CreateFilledVector(minNumber, maxNumber, numElementsInVector);
     std::vector<int> filledVector2 = filledVector1;
-
-    for(auto curItem : filledVector1) 
-    {
-        std::cout << curItem << std::endl;
-    }
 
     auto startQuickTime = std::chrono::high_resolution_clock::now();
     QuickSort(filledVector1);
@@ -27,13 +22,33 @@ int main()
     auto stopCountTime = std::chrono::high_resolution_clock::now();
     auto countSortDuration = std::chrono::duration_cast<std::chrono::microseconds>(stopCountTime - startCountTime);
 
-    for (int i = 0; i < filledVector1.size(); i++)
-    {
-        std::cout << "Quick Sort: " << filledVector1[i] << " Count Sort: " << filledVector2[i] << std::endl;
-    }
-
+    std::cout << "\n=======================================================================\n";
+    std::cout << "Number of Elements: " << numElementsInVector << " Range of Numbers: " << minNumber << "-" << maxNumber << std::endl;
     std::cout << "Quick Sort Duration: " << quickSortDuration.count() << " microseconds\n";
     std::cout << "Count Sort Duration: " << countSortDuration.count() << " microseconds\n";
+    std::cout << "=======================================================================\n";
 
+    int minNumber = 1;
+    int maxNumber = 50;
+    int numElementsInVector = 10000000; // 10 million
+
+    filledVector1 = CreateFilledVector(minNumber, maxNumber, numElementsInVector);
+    filledVector2 = filledVector1;
+
+    startQuickTime = std::chrono::high_resolution_clock::now();
+    QuickSort(filledVector1);
+    stopQuickTime = std::chrono::high_resolution_clock::now();
+    quickSortDuration = std::chrono::duration_cast<std::chrono::microseconds>(stopQuickTime - startQuickTime);
+
+    startCountTime = std::chrono::high_resolution_clock::now();
+    CountSort(filledVector2);
+    stopCountTime = std::chrono::high_resolution_clock::now();
+    countSortDuration = std::chrono::duration_cast<std::chrono::microseconds>(stopCountTime - startCountTime);
+
+    std::cout << "\n=======================================================================\n";
+    std::cout << "Number of Elements: " << numElementsInVector << " Range of Numbers: " << minNumber << "-" << maxNumber << std::endl;
+    std::cout << "Quick Sort Duration: " << quickSortDuration.count() << " microseconds\n";
+    std::cout << "Count Sort Duration: " << countSortDuration.count() << " microseconds\n";
+    std::cout << "=======================================================================\n";
     return 0;
 }

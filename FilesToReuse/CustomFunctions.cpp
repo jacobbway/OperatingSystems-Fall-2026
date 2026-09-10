@@ -1,5 +1,6 @@
 #include <vector>
 #include <random>
+#include <iostream>
 
 
 /// @brief Creates a vector filled with range of numbers of a size
@@ -81,7 +82,7 @@ void CountSort(std::vector<int> &inputVector)
 
     for(int i = 0; i < sizeOfVector; i++)
     {
-        countingVector[inputVector[i]] += 1;
+        countingVector[inputVector[i]]++;
     }
 
     inputVector.clear();
@@ -90,7 +91,7 @@ void CountSort(std::vector<int> &inputVector)
     {
         for(int j = 0; j < countingVector[i]; j++)
         {
-            inputVector.emplace_back(j);
+            inputVector.emplace_back(i);
         }
     }
 }
