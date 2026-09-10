@@ -1,5 +1,6 @@
 #include <iostream>
 #include <chrono>
+#include <vector>
 #include "CustomFunctions.h"
 
 int main()
@@ -8,7 +9,8 @@ int main()
     int maxNumber = 10000;
     int numElementsInVector = 100;//000000; // 100 million
 
-    std::vector<int> filledVector1, filledVector2 = CreateFilledVector(minNumber, maxNumber, numElementsInVector);
+    std::vector<int> filledVector1 = CreateFilledVector(minNumber, maxNumber, numElementsInVector);
+    std::vector<int> filledVector2 = filledVector1;
 
     for(auto curItem : filledVector1) 
     {
@@ -30,8 +32,8 @@ int main()
         std::cout << "Quick Sort: " << filledVector1[i] << " Count Sort: " << filledVector2[i] << std::endl;
     }
 
-    std::cout << "Quick Sort Duration: " << quickSortDuration << " microseconds\n";
-    std::cout << "Count Sort Duration: " << countSortDuration << " microseconds\n";
+    std::cout << "Quick Sort Duration: " << quickSortDuration.count() << " microseconds\n";
+    std::cout << "Count Sort Duration: " << countSortDuration.count() << " microseconds\n";
 
     return 0;
 }

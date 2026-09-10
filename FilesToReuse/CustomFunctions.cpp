@@ -22,6 +22,30 @@ std::vector<int> CreateFilledVector(int minNumber, int maxNumber, int numElement
 
     return filledVector;
 }
+
+/// @brief Helper for quick sort
+/// @param inputVector 
+/// @param low 
+/// @param high 
+/// @return an index to use as a pivot
+int QuickSortHelper(std::vector<int> &inputVector, int low, int high)
+{
+    int pivotValue = inputVector[high];
+    int index = low - 1;
+
+    for (int j = low; j < high; j++)
+    {
+        if (inputVector[j] <= pivotValue)
+        {
+            index += 1;
+            std::swap(inputVector[index], inputVector[j]);
+        }
+    }
+
+    std::swap(inputVector[index +1], inputVector[high]);
+    return index+1;
+}
+
 /// @brief uses quick sort to sort a vector of ints
 /// @param inputVector the vector to sort
 /// @param low 
@@ -33,33 +57,11 @@ void QuickSort(std::vector<int> &inputVector, int low = 0, int high = -1)
     if (low < high)
     {
         int pivotIndex = QuickSortHelper(inputVector, low, high);
-        QuickSort(inputVector, low, pivotIndex+1);
+        QuickSort(inputVector, low, pivotIndex-1);
         QuickSort(inputVector, pivotIndex+1, high);
     }
 }
 
-/// @brief Helper for quick sort
-/// @param inputVector 
-/// @param low 
-/// @param high 
-/// @return an index to use as a pivot
-int QuickSortHelper(std::vector<int> &inputVector, int low, int high)
-{
-    int pivotIndex = inputVector[high];
-    int index = low - 1;
-
-    for (int j = index; j <= pivotIndex; j++)
-    {
-        if (inputVector[j] <= pivotIndex)
-        {
-            index += 1;
-            inputVector[index], inputVector[j] = inputVector[j] , inputVector[index];
-        }
-    }
-
-    inputVector[index+1], inputVector[high] = inputVector[high], inputVector[index+1];
-    return index+1;
-}
 
 /// @brief performs counting sort on a vector of ints
 /// @param inputVector 
@@ -75,7 +77,7 @@ void CountSort(std::vector<int> &inputVector)
         if (inputVector[i] > maxValueInVector) maxValueInVector = inputVector[i];
     }
 
-    std::vector<int> countingVector(maxValueInVector);
+    std::vector<int> countingVector(maxValueInVector + 1);
 
     for(int i = 0; i < sizeOfVector; i++)
     {
