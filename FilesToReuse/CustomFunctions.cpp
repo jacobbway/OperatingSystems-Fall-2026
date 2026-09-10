@@ -60,3 +60,35 @@ int QuickSortHelper(std::vector<int> &inputVector, int low, int high)
     inputVector[index+1], inputVector[high] = inputVector[high], inputVector[index+1];
     return index+1;
 }
+
+/// @brief performs counting sort on a vector of ints
+/// @param inputVector 
+void CountSort(std::vector<int> &inputVector)
+{
+    if (inputVector.empty()) return;
+
+    int sizeOfVector = inputVector.size();
+    int maxValueInVector = -1;
+
+    for(int i = 0; i < sizeOfVector; i++)
+    {
+        if (inputVector[i] > maxValueInVector) maxValueInVector = inputVector[i];
+    }
+
+    std::vector<int> countingVector(maxValueInVector);
+
+    for(int i = 0; i < sizeOfVector; i++)
+    {
+        countingVector[inputVector[i]] += 1;
+    }
+
+    inputVector.clear();
+
+    for(int i = 0; i < countingVector.size(); i++)
+    {
+        for(int j = 0; j < countingVector[i]; j++)
+        {
+            inputVector.emplace_back(j);
+        }
+    }
+}
