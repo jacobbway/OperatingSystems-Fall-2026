@@ -1,0 +1,3 @@
+g++ "file name" -o "executable name"
+
+-o sets the name of the compiled file
