@@ -23,6 +23,7 @@ int main()
     {
         c_strings.push_back(token.c_str());
     }
+    c_strings.push_back(NULL);
 
     const char** c_str_array = c_strings.data();
     size_t array_size = tokens.size();
