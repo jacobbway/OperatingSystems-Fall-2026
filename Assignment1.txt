@@ -1,0 +1,76 @@
+Script started on 2026-09-15 09:35:36-05:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="120" LINES="30"]
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ g++ ./Assignment1/CPP//[KProgram1.cpp .[K./FilesToReuse/CustomFunctions.cpp -I FilesToReuse/ - o Program1
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ ./Program1 
+[?2004l
+==================================================================
+Number of Elements: 1000000 Range of Numbers: 1-10000
+Quick Sort Duration: 708104 microseconds
+Count Sort Duration: 28602 microseconds
+==================================================================
+
+=================================================================
+Number of Elements: 1000000 Range of Numbers: 1-50
+Quick Sort Duration: 104057745 microseconds
+Count Sort Duration: 28674 microseconds
+=================================================================
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ cd Assignment1/
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1[00m$ cd JAVA/
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ javac *.java
+[?2004lProgram1.java:4: error: class Program1Part1 is public, should be declared in a file named Program1Part1.java
+public class Program1Part1 {
+       ^
+1 error
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ javac *.java[4Pcd JAVA/javac *.java
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ javac *.java[Kcd ../..
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ java ./Assignment1/JAVA/[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls[K[Kcd Assignment1/JAVA/
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ ls
+[?2004lCustomFunctions.class  CustomFunctions.java  Program1.class  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ cd ../..\
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ cd ../..
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ java Assignment1/JAVA/Program1.java [K[K[K[K[Kclass
+[?2004lError: Could not find or load main class Assignment1.JAVA.Program1.class
+Caused by: java.lang.ClassNotFoundException: Assignment1.JAVA.Program1.class
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ ls
+[?2004l [0m[01;34mAssignment1[0m   Assignment1.txt  'Complie Commands.txt'   [01;34mFilesToReuse[0m  'Linux Commands.md'   [01;32mProgram1[0m   README.md
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ java pr[K[KProgram 1
+[?2004lError: Could not find or load main class Program
+Caused by: java.lang.ClassNotFoundException: Program
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ cd Assignment1/
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1[00m$ cd JAVA/
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ ls
+[?2004lCustomFunctions.class  CustomFunctions.java  Program1.class  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java Program1.class
+[?2004lError: Could not find or load main class Program1.class
+Caused by: java.lang.ClassNotFoundException: Program1.class
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java Program1.classls[Kcd JAVA/[7@Assignment1[C[1Pjava Program 1ls[K[34@java Assignment1/JAVA/Program1.clas[Ccd ../..[K\ls[Kcd Assignment1/JAVA/../..[Kjavac *.java
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ ls
+[?2004lCustomFunctions.class  CustomFunctions.java  Program1.class  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java Program1.class CustomFunctions.class [K[Ks
+[?2004lError: Could not find or load main class Program1.class
+Caused by: java.lang.ClassNotFoundException: Program1.class
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ clear
+[?2004l[H[2J[3J[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ ls
+[?2004lCustomFunctions.class  CustomFunctions.java  Program1.class  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ rm Program1.class 
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ rm CustomFunctions.class 
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ ls
+[?2004lCustomFunctions.java  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ javac *java[K[K[K[K.java
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java Program1.c[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+[?2004lCustomFunctions.class  CustomFunctions.java  Program1.class  Program1.java
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java CustomFunctionsc[K.c[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[KProgram1.class
+[?2004lError: Could not find or load main class Program1.class
+Caused by: java.lang.ClassNotFoundException: Program1.class
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ java Program1.class[K[K[K[K[K[K
+[?2004lError: Could not find or load main class Program1
+Caused by: java.lang.NoClassDefFoundError: Program1 (wrong name: Assignment1/JAVA/Program1)
+[?2004h]0;jacob@JacobsDesktop: ~/FALL2026/Assignment1/JAVA[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026/Assignment1/JAVA[00m$ cd ../..
+[?2004l[?2004h]0;jacob@JacobsDesktop: ~/FALL2026[01;32mjacob@JacobsDesktop[00m:[01;34m~/FALL2026[00m$ java Assignment1/JAVA/Program1.java [K[K[K[K[K[K
+[?2004l===============================================
+Number of Elements: 1000000 MinNumber: 1 MaxNumber: 10000
+Quick Sort Duration: 106 milliseconds
+Count Sort Duration: 5 milliseconds
+===============================================
+===============================================
+Number of Elements: 10000

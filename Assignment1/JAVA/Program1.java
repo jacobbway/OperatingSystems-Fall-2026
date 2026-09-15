@@ -1,7 +1,7 @@
 package Assignment1.JAVA;
 import java.util.Random;
 
-public class Program1Part1 {
+public class Program1 {
     public static void main(String[] args)
     {
         int minNumber = 1;
