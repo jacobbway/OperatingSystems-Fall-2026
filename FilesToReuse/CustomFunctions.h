@@ -5,5 +5,6 @@ std::vector<int>* CreateFilledVector(int minNumber, int maxNumber, int numElemen
 int QuickSortHelper(std::vector<int> *inputVector, int low, int high);
 void QuickSort(std::vector<int> *inputVector, int low = 0, int high = 0);
 void CountSort(std::vector<int> *inputVector);
+std::vector<std::string> TokenizeString(std::string InputString);
 
 #endif

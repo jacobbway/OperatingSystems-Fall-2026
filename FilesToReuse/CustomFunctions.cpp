@@ -1,5 +1,6 @@
 #include <vector>
 #include <random>
+#include <sstream>
 
 
 /// @brief Creates a vector filled with range of numbers of a size
@@ -109,4 +110,14 @@ void CountSort(std::vector<int> *inputVector)
             (*inputVector).emplace_back(i);
         }
     }
+}
+
+std::vector<std::string> TokenizeString(std::string InputString)
+{
+    std::vector<std::string> TempVector;
+    std::stringstream StreamObject = std::stringstream(InputString);
+    std::string CurToken;
+    while(StreamObject >> CurToken)
+        TempVector.push_back(CurToken);
+    return TempVector;
 }
