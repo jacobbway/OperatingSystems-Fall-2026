@@ -2,7 +2,8 @@
 #include <random>
 #include <regex>
 #include <unordered_set>
-#include <iostream>#include <sstream>
+#include <iostream>
+#include <sstream>
 
 
 /// @brief Creates a vector filled with range of numbers of a size
