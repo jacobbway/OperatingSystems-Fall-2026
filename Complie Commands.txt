@@ -1,3 +1,5 @@
 g++ "file name" -o "executable name"
 
 -o sets the name of the compiled file
+
+g++ "file name" "other files" -I "folder of includes" -o "exec name"
