@@ -2,7 +2,8 @@
 #include <random>
 #include <regex>
 #include <unordered_set>
-#include <iostream>
+#include <iostream>#include <sstream>
+
 
 /// @brief Creates a vector filled with range of numbers of a size
 /// @param minNumber lowest number of range
@@ -172,4 +173,14 @@ std::vector<std::string> FindSymbolInString(std::vector<std::string> inputVector
     }
 
     return outputVector;
+}
+
+std::vector<std::string> TokenizeString(std::string InputString)
+{
+    std::vector<std::string> TempVector;
+    std::stringstream StreamObject = std::stringstream(InputString);
+    std::string CurToken;
+    while(StreamObject >> CurToken)
+        TempVector.push_back(CurToken);
+    return TempVector;
 }

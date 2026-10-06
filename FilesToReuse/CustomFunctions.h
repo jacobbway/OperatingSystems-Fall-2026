@@ -9,5 +9,6 @@ void QuickSort(std::vector<int> *inputVector, int low = 0, int high = 0);
 void CountSort(std::vector<int> *inputVector);
 std::string BuildStringAss2(std::vector<char> symbolsToFind, char matchedSymbol, int symbolPos, bool anyMatch, int cmdNmb);
 std::vector<std::string> FindSymbolInString(std::vector<std::string> inputVectorOfStrings, std::vector<char> symbolsToFind);
+std::vector<std::string> TokenizeString(std::string InputString);
 
 #endif
