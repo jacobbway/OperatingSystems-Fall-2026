@@ -1,5 +1,8 @@
 #include <vector>
 #include <random>
+#include <regex>
+#include <unordered_set>
+#include <iostream>
 #include <sstream>
 
 
@@ -110,6 +113,67 @@ void CountSort(std::vector<int> *inputVector)
             (*inputVector).emplace_back(i);
         }
     }
+}
+
+std::string BuildStringAss2(std::vector<char> symbolsToFind, char matchedSymbol, int symbolPos, bool anyMatch, int cmdNmb)
+{
+    std::string addString = "Command ";
+    addString += std::to_string(cmdNmb);
+    addString += ": ";
+    
+    for(char c : symbolsToFind)
+    {
+        if (c == matchedSymbol) 
+        {
+            addString +=  c;
+            addString += " found at position ";
+            addString += std::to_string(symbolPos);
+        } 
+        else 
+        {
+            addString += "No ";
+            addString += c;
+        }
+        addString += ", ";
+    }
+
+    addString.erase(addString.length() - 2);
+
+    return addString;
+}
+
+std::vector<std::string> FindSymbolInString(std::vector<std::string> inputVectorOfStrings, std::vector<char> symbolsToFind)
+{
+    std::vector<std::string> outputVector;
+    outputVector.reserve(inputVectorOfStrings.size());
+    std::string RegexString = "[";
+
+    for(char c : symbolsToFind)
+    {
+        RegexString += c;
+    }
+
+    RegexString += "]";
+
+    std::regex RegexMatcher(RegexString);
+    std::smatch match;
+
+    int cmdNmbr = 0;
+
+    for(std::string curLine : inputVectorOfStrings)
+    {
+        if(std::regex_search(curLine, match, RegexMatcher) == true)
+        {
+            outputVector.push_back(BuildStringAss2(symbolsToFind, match.str(0)[0], match.position(), true, cmdNmbr));
+        }
+        else 
+        {
+            outputVector.push_back(BuildStringAss2(symbolsToFind, '\0', -1, false, cmdNmbr));
+        }
+        ++cmdNmbr;
+    }
+
+    return outputVector;
 }
 
 std::vector<std::string> TokenizeString(std::string InputString)
