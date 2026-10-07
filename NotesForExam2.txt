@@ -1,0 +1,58 @@
+We can have half a written page for the second part of the exam
+
+first half is closed book, all true false or MP
+
+answer questions related to computer hardware
+
+program counter holds the address of the next instruction
+
+I/O management: 3 ways,
+ 1 programmed I/O bad because the CPU is always waiting on the I/O
+ 2 interrupt based is better than program
+	trap is software generated interrupt
+ 3 direct memory access: it relieves CPU from I/O operation
+	Separates the CPU from directly transfering memory/data from RAM to Long term storage devices
+
+Multicore architecture: let you run independent functions/programs/or even parts of programs
+SMP, multiple processors vs cores, much larger scalability
+
+What does an OS do? it acts as a layer between hardware and GUI
+
+Two problems with Simple batch systems
+	Lack of interaction between user and monitor
+	down time between processes
+
+Multiprogramming fixed the major downtime between processes but the lack of interaction persisted
+
+Time-sharing fixed the lack of interaction by having the cpu work on many processes in short bursts
+giving a user a window/interface to interact with the device
+
+privilege instructions? how can we prevent the user from trashing the pc
+	limit access to these priviledged instructions from any user
+	-solved with dual mode OS
+
+Dual mode -kernel -user
+	-kernel houses select instructions deemed important/strong enough to be protected
+	-user can call these elevated calls but need to gain kernel access for the moment
+	-three reasons they system would interrupt: system call, exception, interruption
+
+program vs process
+	program is a file that has code
+	when the program is ran it is then a process
+
+process control block
+	data structure mainted by OS to help manage a process while its running
+	who owns it? does it have children? does it have parent?
+
+context switch
+	OS switches currently running process using load unload functions that way a process
+	doesn't lose its positin
+
+two schedulers
+	long term -> will move a process in the backlog into a state where it can be ran
+	short term scheduler / dispatcher -> schedules which process is currently using the cpu
+		from the ready schedule
+
+things like weather data processing take more CPU than a videogame using mostly I/O
+
+make an attendance sheet for tomorrow
