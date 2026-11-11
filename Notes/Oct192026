@@ -1,0 +1,44 @@
+Memory Addresses Types
+	Logical: reference to a memory location independent of the current assignment of
+		data to memory
+	Relative: reference to memory address but with a reference to some known point
+	Physical / Absolute: actual location in memory
+
+EEprom: Electrically erasable programmable read-only memmory
+
+static relocation: developed by IBM: modifies second program on the fly, has a large overhead
+
+dynamic relocation: solution gives each process its own address space as protection
+	* different part of the physical memory
+	* memory protection for multiprocessing
+	* easy  to implement w/ hardware
+	** every operation needs an addition and comparison operation to ensure origin location
+
+swapping: swap process in and out of memory to a "backing store"
+	* allows for multiple processes that would normally exceed physical memory size
+
+backing store: large storage for all processes
+
+Memory Placement Algorithms
+	*Best-fit: chooses the block that is closest in size, slow, tiny useless holes
+	*First-fit: begins to scan memory from the beginning and chooses the first block that 
+		is large enough, simple and fast, COULD PRODUCE LARGE HOLES
+	*Next-fit: begins to scan memory from location of the last placement and chooses
+		the next available block that is large enough
+	*Worst-fit: to get around breaking up nearly exact matches into a process and a tiny hole
+		    one could think about taking the largest hole available.
+			*proved to be ineffective
+
+internal fragmentation: wasted memory space due to the block of data loaded being
+			smaller than the partition
+
+external fragmentation: there is enough total unused memory for the new process
+			but it is not contiguous, since it is fragmented into lots of small holes
+
+
+PART 2 SLIDES SIMPLE PAGING AND SEGMENTATION
+
+pages: PROCESS MEMORY divided into small fixed-size chunks of the same size
+frames: PARTITION MEMOROY equal fixed-sized chunks that are relatively small
+
+
