@@ -43,10 +43,12 @@ int main()
 
     while(true)
     {
+        unsigned long long BCols;
         std::cout << "Build Matrix A\n";
         MatADim = GetVectorSize();
-        std::cout << "Build Matrix B\n";
-        MatBDim = GetVectorSize();
+        std::cout << "Enter # of columns for matrix B!\n";
+        std::cin >> BCols;
+        MatBDim = std::pair<unsigned long long, unsigned long long>(MatADim.second, BCols);
 
         if(MatADim.second != MatBDim.first)
         {
@@ -80,7 +82,7 @@ int main()
 
     std::cout << "Execution time: " << duration.count() << " milliseconds\n";
 
-    PrintVector(MatAB);
+    // PrintVector(MatAB);
 
     return 0;
 }
@@ -125,7 +127,7 @@ std::vector<std::vector<unsigned long long>> MatProd(std::vector<std::vector<uns
         ComputeRows(0, MatA.size(), MatA, MatB, MatAB); 
         return MatAB;
     }
-    
+
     // One thread per core, but never more threads than rows
     std::size_t numThreads = std::max(1u, std::thread::hardware_concurrency());
     numThreads = std::min(numThreads, MatA.size());

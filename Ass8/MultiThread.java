@@ -17,21 +17,16 @@ public class MultiThread
 
         System.out.println("Single or multithread? (s = single m = multi");
         Choice = in.nextLine();
-        if(Choice == "s")
+        if(Choice.equals("s"))
             SingleThread = true;
+
+        System.out.println(SingleThread);
 
         while(true)
         {
             System.out.println("Build Matrix A");
             MatADim = GetVectorSize(in);
-            System.out.println("Build Matrix B");
-            MatBDim = GetVectorSize(in);
-
-            if(MatADim[1] != MatBDim[0])
-            {
-                System.out.println("Matrix A Columns and Matrix B Rows must be equal!");
-                continue;
-            }
+            MatBDim = MatADim;
 
             System.out.println("Matrix A Dimensions: " + MatADim[0] + " by " + MatADim[1]);
             System.out.println("Matrix B Dimensions: " + MatBDim[0] + " by " + MatBDim[1]);
@@ -75,12 +70,10 @@ public class MultiThread
     /// returns {rows, cols}
     static long[] GetVectorSize(Scanner in)
     {
-        System.out.println("Input Number of Cols: ");
+        System.out.println("Input Dimensions: ");
         long NumCols = in.nextLong();
-        System.out.println("Input Number of Rows: ");
-        long NumRows = in.nextLong();
 
-        return new long[] { NumRows, NumCols };
+        return new long[] { NumCols, NumCols };
     }
 
     static long[][] MatProd(long[][] MatA, long[][] MatB) throws InterruptedException
