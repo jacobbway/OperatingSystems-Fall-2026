@@ -68,17 +68,23 @@ int main()
     std::vector<std::vector<unsigned long long>> MatB(MatBDim.first, std::vector<unsigned long long>(MatBDim.second));
     std::vector<std::vector<unsigned long long>> MatAB(MatADim.first, std::vector<unsigned long long>(MatBDim.second));
 
-    FillVector(MatA, MaxNum); FillVector(MatB, MaxNum);
-    MatB = TransposeMatB(MatB);
-
-    auto start = std::chrono::steady_clock::now();
-
-    MatAB = MatProd(MatA, MatB);
+    for(int i = 0; i < 10; i++)
+    {
+        std::cout << "======================================\n";
+        std::cout << "RESULTS #: " << i + 1 << std::endl;
+        FillVector(MatA, MaxNum); FillVector(MatB, MaxNum);
+        MatB = TransposeMatB(MatB);
     
-    auto end = std::chrono::steady_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-
-    std::cout << "Execution time: " << duration.count() << " milliseconds\n";
+        auto start = std::chrono::steady_clock::now();
+    
+        MatAB = MatProd(MatA, MatB);
+        
+        auto end = std::chrono::steady_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    
+        std::cout << "Execution time: " << duration.count() << " microseconds\n";
+        std::cout << "======================================\n";
+    }
 
     // PrintVector(MatAB);
 
