@@ -93,7 +93,6 @@ public class MultiThread
             return MatAB;
         }
 
-        // One thread per core, but never more threads than rows
         int numThreads = Math.max(1, Runtime.getRuntime().availableProcessors());
         numThreads = Math.min(numThreads, MatA.length);
         if(numThreads == 0)
