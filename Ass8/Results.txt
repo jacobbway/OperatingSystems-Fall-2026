@@ -1,31 +1,63 @@
-Seq C++ Windows
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+WINDOWS TESTS
 1000x1000 by 1000x1000 max Num 10000
+
+Seq C++
 591 ms
 665
 742
 717
 654
 
-Multi C++ Windows
-1000x1000 by 1000x1000 maxNum 10000
+Multi C++
 139 ms
 139
 133
 126
 140
 
-Seq Java Windows
-1000x1000 by 1000x1000 maxNum 10000
+Seq Java
 296ms
 313
 305
 281
 340
 
-Multi Java Windows
-1000x1000 by 1000x1000 maxNum 10000
+Multi Java
 146 ms
 156
 147
 150
 151
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+LINUX TESTS
+1000x1000 by 1000x1000 maxNum 10000
+
+Seq C++
+566 ms
+620
+562
+642
+644
+
+Multi C++
+130ms
+135
+143
+131
+135
+
+Seq Java
+307 ms
+380
+333
+307
+347
+
+Multi Java
+154 ms
+188
+178
+165
+155

@@ -44,11 +44,9 @@ int main()
     while(true)
     {
         unsigned long long BCols;
-        std::cout << "Build Matrix A\n";
+        std::cout << "Build Matrixs\n";
         MatADim = GetVectorSize();
-        std::cout << "Enter # of columns for matrix B!\n";
-        std::cin >> BCols;
-        MatBDim = std::pair<unsigned long long, unsigned long long>(MatADim.second, BCols);
+        MatBDim = MatADim;
 
         if(MatADim.second != MatBDim.first)
         {
@@ -105,15 +103,13 @@ void FillVector(std::vector<std::vector<unsigned long long>>& FillMe, unsigned l
 
 std::pair<unsigned long long,unsigned long long> GetVectorSize()
 {
-    unsigned long long NumCols, NumRows;
+    unsigned long long NumCols;
 
-    std::cout << "Input Number of Cols: \n";
+    std::cout << "Input Matrix Size (its equal): \n";
     std::cin >> NumCols;
-    std::cout << "Input Number of Rows: \n";
-    std::cin >> NumRows;
 
     return std::pair<unsigned long long, unsigned long long>
-        (NumRows, NumCols);
+        (NumCols, NumCols);
 }
 
 std::vector<std::vector<unsigned long long>> MatProd(std::vector<std::vector<unsigned long long>>& MatA,
