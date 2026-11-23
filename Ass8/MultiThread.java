@@ -4,13 +4,21 @@ import java.util.concurrent.ThreadLocalRandom;
 //  javac MultiThread.java
 //  java MultiThread
 
+
 public class MultiThread
 {
+    public static boolean SingleThread = false;
     public static void main(String[] args) throws InterruptedException
     {
         Scanner in = new Scanner(System.in);
         long[] MatADim, MatBDim;   // {rows, cols}
         long MaxNum;
+        String Choice = "";
+
+        System.out.println("Single or multithread? (s = single m = multi");
+        Choice = in.nextLine();
+        if(Choice == "s")
+            SingleThread = true;
 
         while(true)
         {
@@ -79,8 +87,11 @@ public class MultiThread
     {
         long[][] MatAB = new long[MatA.length][];
 
-        // uncomment next line to make sequential
-        // ComputeRows(0, MatA.lenght, MatA, MatB, MatAB); return MatAB;
+        if(SingleThread)
+        {
+            ComputeRows(0, MatA.length, MatA, MatB, MatAB);
+            return MatAB;
+        }
 
         // One thread per core, but never more threads than rows
         int numThreads = Math.max(1, Runtime.getRuntime().availableProcessors());

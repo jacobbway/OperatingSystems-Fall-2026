@@ -26,10 +26,20 @@ void ComputeRows(std::size_t start, std::size_t end,
     std::vector<std::vector<unsigned long long>>& MatB,
     std::vector<std::vector<unsigned long long>>& MatAB);
 
+bool SingleThread = false;
+
 int main()
 {
     std::pair<unsigned long long, unsigned long long> MatADim, MatBDim;
     unsigned long long MaxNum;
+
+    std::string Choice = "";
+
+    std::cout << "Do you want to be sequential of multithread? (s = sequential m = multithread)\n";
+    std::cin >> Choice;
+
+    if(Choice == "s")
+        SingleThread = true;
 
     while(true)
     {
@@ -110,9 +120,12 @@ std::vector<std::vector<unsigned long long>> MatProd(std::vector<std::vector<uns
     // MatB is already transposed, so MatB.size() is the column count of the original B
     std::vector<std::vector<unsigned long long>> MatAB(MatA.size(), std::vector<unsigned long long>(MatB.size()));
 
-    //uncomment next line to make sequential
-    // ComputeRows(0, MatA.size(), MatA, MatB, MatAB); return MatAB;
-
+    if(SingleThread)
+    {
+        ComputeRows(0, MatA.size(), MatA, MatB, MatAB); 
+        return MatAB;
+    }
+    
     // One thread per core, but never more threads than rows
     std::size_t numThreads = std::max(1u, std::thread::hardware_concurrency());
     numThreads = std::min(numThreads, MatA.size());
