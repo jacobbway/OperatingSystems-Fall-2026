@@ -39,19 +39,24 @@ public class MultiThread
         long[][] MatA = new long[(int) MatADim[0]][(int) MatADim[1]];
         long[][] MatB = new long[(int) MatBDim[0]][(int) MatBDim[1]];
 
-        FillVector(MatA, MaxNum); FillVector(MatB, MaxNum);
-        MatB = TransposeMatB(MatB);
+        for(int i = 1; i < 11; i++)
+        {
+            System.out.println("---------------------");
+            System.out.printf("\nResults #: %d", i);
+            FillVector(MatA, MaxNum); FillVector(MatB, MaxNum);
+            MatB = TransposeMatB(MatB);
+    
+            long start = System.nanoTime();
+    
+            long[][] MatAB = MatProd(MatA, MatB);
+    
+            long end = System.nanoTime();
+            long duration = (end - start) / 1_000;
+    
+            System.out.println("\nExecution time: " + duration + " microseconds");
+        }
 
-        long start = System.nanoTime();
-
-        long[][] MatAB = MatProd(MatA, MatB);
-
-        long end = System.nanoTime();
-        long duration = (end - start) / 1_000_000;
-
-        System.out.println("Execution time: " + duration + " milliseconds");
-
-        PrintVector(MatAB);
+        //PrintVector(MatAB);
     }
 
     static void FillVector(long[][] FillMe, long MaxNum)
