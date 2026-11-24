@@ -5,11 +5,19 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <regex>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 void PrintCWD();
 void TokenizeStringForEXECVP(char* InputString, char* CommandString[]);
 void PrintHistory(std::vector<std::string> VectToPrint);
 int ContainsRedirect(std::string InputStr);
+
+void RedirectOutput(char* args[]);
+void RedirectInput(char* args[]);
+void ExecutePipe(char* args[]);
+void ExecuteCommand(char* args[]);
 
 int main()
 {
@@ -36,11 +44,13 @@ int main()
             std::cout << "======================================\n";
             std::cout << "\tThanks for using Ass4Shell!\n";
             std::cout << "======================================\n";
+            delete[] InputString;
             break;
         }        
         else if(CurLine == "pwd")
         {
             PrintCWD();
+            delete[] InputString;
             continue;
         }
         else if(CurLine == "help")
@@ -49,47 +59,37 @@ int main()
             std::cout << "\texit - exits the shell\n";
             std::cout << "\tpwd - prints working directory\n";
             std::cout << "\thistory - prints all entries\n";
+            delete[] InputString;
             continue;
         }
         else if(CurLine == "history")
         {
             PrintHistory(HistoryVector);
+            delete[] InputString;
             continue;
         }
         else
         {
-            switch(ContainsRedirect(CurLine))
+            char* args[64];
+            TokenizeStringForEXECVP(InputString, args);
+            if (args[0] == nullptr)
             {
-                case 1:
-                    std::cout << ">> found\n";
-                    break;
-                case 2:
-                    std::cout << "> found\n";
-                    break;
-                case 3:
-                    std::cout << "< found\n";
-                    break;
-                case 4:
-                    std::cout << "| found\n";
-                    break;
-                case 0:
-                default:
-                    break;
+                delete[] InputString;
+                continue;
             }
-            pid_t Child = fork();
-    
-            if(Child == 0)
-            {
-                char* ExecVPString[64];
-                TokenizeStringForEXECVP(InputString, ExecVPString);
-                if(execvp(ExecVPString[0], ExecVPString) < 0)
-                {
-                    std::cout << "Failed to execvp or you entered nonsense\n";
-                    return 0;
-                }
-            }
+
+            int redirectType = ContainsRedirect(CurLine);
+
+            if (redirectType == 2)
+                RedirectOutput(args);
+            else if (redirectType == 3)
+                RedirectInput(args);
+            else if (redirectType == 4)
+                ExecutePipe(args);
             else
-                wait(0);
+                ExecuteCommand(args);
+
+            delete[] InputString;
         }
     }
 }
@@ -138,11 +138,119 @@ void TokenizeStringForEXECVP(char* InputString, char* CommandString[])
 void PrintHistory(std::vector<std::string> VectToPrint)
 {
     std::cout << "//////////////////////////////////////\n";
-    std::cout << "\tSTART OF HISTORY\n";
+    std::cout << "\tSTART OF HISTORY\n\n";
+    int count = 1;
     for(std::string CurStr : VectToPrint)
     {
-        std::cout << CurStr << std::endl;
+        std::cout << count++ << " " << CurStr << std::endl;
     }
-    std::cout << "\n\n\tEND OF HISTORY\n";
+    std::cout << "\n\tEND OF HISTORY\n";
     std::cout << "//////////////////////////////////////\n";
+}
+
+void RedirectOutput(char* args[])
+{
+    int i = 0;
+    while (args[i] != nullptr && strcmp(args[i], ">") != 0) i++;
+    char* filename = args[i + 1];
+    args[i] = nullptr;
+
+    int outFd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+    int origOut = dup(1);
+    dup2(outFd, 1);
+    close(outFd);
+
+    if (fork() == 0)
+    {
+        if (execvp(args[0], args) < 0)
+        {
+            std::cout << "Failed to execvp or you entered nonsense\n";
+            exit(1);
+        }
+    }
+    wait(0);
+
+    dup2(origOut, 1);
+    close(origOut);
+}
+
+void RedirectInput(char* args[])
+{
+    int i = 0;
+    while (args[i] != nullptr && strcmp(args[i], "<") != 0) i++;
+    char* filename = args[i + 1];
+    args[i] = nullptr;
+
+    int inFd = open(filename, O_RDONLY);
+    int origIn = dup(0);
+    dup2(inFd, 0);
+    close(inFd);
+
+    if (fork() == 0)
+    {
+        if (execvp(args[0], args) < 0)
+        {
+            std::cout << "Failed to execvp or you entered nonsense\n";
+            exit(1);
+        }
+    }
+    wait(0);
+
+    dup2(origIn, 0);
+    close(origIn);
+}
+
+void ExecutePipe(char* args[])
+{
+    int i = 0;
+    while (args[i] != nullptr && strcmp(args[i], "|") != 0) i++;
+    args[i] = nullptr;
+    char** cmd1 = args;
+    char** cmd2 = &args[i + 1];
+
+    int fds[2];
+    pipe(fds);
+
+    int origIn = dup(0);
+    int origOut = dup(1);
+
+    if (fork() == 0)
+    {
+        dup2(fds[1], 1);
+        close(fds[1]);
+        close(fds[0]);
+        if (execvp(cmd1[0], cmd1) < 0)
+            exit(1);
+    }
+    wait(0);
+
+    dup2(fds[0], 0);
+    close(fds[0]);
+    dup2(origOut, 1);
+    close(fds[1]);
+
+    if (fork() == 0)
+    {
+        if (execvp(cmd2[0], cmd2) < 0)
+            exit(1);
+    }
+    wait(0);
+
+    dup2(origIn, 0);
+    dup2(origOut, 1);
+    close(origIn);
+    close(origOut);
+}
+
+void ExecuteCommand(char* args[])
+{
+    if (fork() == 0)
+    {
+        if (execvp(args[0], args) < 0)
+        {
+            std::cout << "Failed to execvp or you entered nonsense\n";
+            exit(1);
+        }
+    }
+    wait(0);
 }
